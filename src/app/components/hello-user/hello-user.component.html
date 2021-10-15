@@ -1,0 +1,37 @@
+<div class="container shadow-smp-3 mb-5 mt-5 bg-white rounded">
+    <form #FormHello="ngForm">
+        <div class="cross-validation"
+            [class.cross-validation-error]="FormHello.errors?.identityRevealed && (FormHello.touched || FormHello.dirty)">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="lblFirstname">
+                        First name<span class="text-danger ml-1">*</span>
+                    </span>
+                </div>
+                <input class="form-control rounded-right" type="text" name="txtFirstname" id="txtFirstname"
+                    [(ngModel)]="user.firstname" #txtFirstname="ngModel" required>
+                <div class="invalid-feedback">
+                    This field is required
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="lblLastname">Last name <span class="text-danger ml-1"> *</span></span>
+                </div>
+                <input class="form-control rounded-right" type="text" name="txtLastname" id="txtLastname"
+                    [(ngModel)]="user.lastname" #txtLastname="ngModel" required>
+                <div class="invalid-feedback" *ngIf="txtLastname.invalid && (txtLastname.dirty || txtLastname.touched)">
+                    This field is required </div>
+            </div>
+            <button type="button" type='submit' class="btn btn-primary btn-min-width" name="btnSayHello" id="btnSayHello"
+                [disabled]="user.firstname.trim() === '' || user.lastname.trim() === ''"
+                (click)="btnSayHello_Click()">Say Hello</button>
+            <button type="button" class="btn btn-outline-danger btn-min-width ml-2" (click)="btnResetUser_Click()" [disabled]="">
+                Reset
+            </button>
+        </div>
+    </form>
+    <ngb-alert *ngIf="IsSayHello" class="my-3" #alert type="{{myalert.type}}" (close)="alert_Close() ">
+        {{myalert.message}}
+    </ngb-alert>
+</div>

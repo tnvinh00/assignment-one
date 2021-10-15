@@ -1,0 +1,63 @@
+<form #FormList="ngForm">
+    <div class="form-group">
+        <label for="name">First Name</label>
+        <input type="text" id="txtFirstname" name="txtFirstname" class="form-control" required minlength="4"
+            [(ngModel)]="user.firstname" #txtFirstname="ngModel">
+
+        <div *ngIf="txtFirstname.invalid && (txtFirstname.dirty || txtFirstname.touched)"
+            class="text-danger text-small mt-1">
+            <div *ngIf="txtFirstname.errors?.required">
+                First Name is required.
+            </div>
+            <div *ngIf="txtFirstname.errors?.minlength">
+                First Name must be at least 4 characters long.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name">Last Name</label>
+        <input type="text" id="txtLastname" name="txtLastname" class="form-control" required minlength="4"
+            [(ngModel)]="user.lastname" #txtLastname="ngModel">
+
+        <div *ngIf="txtLastname.invalid && (txtLastname.dirty || txtLastname.touched)"
+            class="text-danger text-small mt-1">
+            <div *ngIf="txtLastname.errors?.required">
+                Last Name is required.
+            </div>
+            <div *ngIf="txtLastname.errors?.minlength">
+                Last Name must be at least 4 characters long.
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success d-block w-100 mb-4" type="submit" (click)="btnAddUser_Click()"
+        [disabled]="user.firstname.trim() === '' || user.lastname.trim() === ''">
+        Add User
+    </button>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Full Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listUsers; index as userId" class="text-center">
+                <td>{{userId + 1}}</td>
+                <td>{{item.firstname}}</td>
+                <td>{{item.lastname}}</td>
+                <td>{{item.firstname + ' ' + item.lastname}}</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" (click)="deleteUser_Click(userId)"><i
+                            class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 *ngIf="listUsers">No User</h2>
+</div>
