@@ -8,7 +8,7 @@
                         First name<span class="text-danger ml-1">*</span>
                     </span>
                 </div>
-                <input class="form-control rounded-right" type="text" name="txtFirstname" id="txtFirstname"
+                <input class="form-control rounded-right" type="text" name="txtFirstname" id="txtFirstname" autocomplete="off"
                     [(ngModel)]="user.firstname" #txtFirstname="ngModel" required>
                 <div class="invalid-feedback">
                     This field is required
@@ -18,7 +18,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="lblLastname">Last name <span class="text-danger ml-1"> *</span></span>
                 </div>
-                <input class="form-control rounded-right" type="text" name="txtLastname" id="txtLastname"
+                <input class="form-control rounded-right" type="text" name="txtLastname" id="txtLastname" autocomplete="off"
                     [(ngModel)]="user.lastname" #txtLastname="ngModel" required>
                 <div class="invalid-feedback" *ngIf="txtLastname.invalid && (txtLastname.dirty || txtLastname.touched)">
                     This field is required </div>
