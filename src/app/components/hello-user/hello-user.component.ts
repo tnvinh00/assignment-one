@@ -24,6 +24,7 @@ export class HelloUserComponent implements OnInit {
     btnResetUser_Click() {
         this.user.firstname = '';
         this.user.lastname = '';
+        this.IsSayHello = false;
     }
 
     btnSayHello_Click() {
